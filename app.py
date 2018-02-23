@@ -16,15 +16,16 @@ for pg in quote_page:
   soup = BeautifulSoup(page, 'html.parser')
 
   # remove div of name and get its value
-  name_box = soup.find('h1', attrs={'class': 'name'})
-  name = name_box.text.strip() #strip() removes starting and trailing
+  # name_box = soup.find('h1', attrs={'class': 'name'})
+  # name = name_box.text.strip() #strip() removes starting and trailing
 
   #get the index price
-  price_box = soup.find('div', attrs={'class': 'price'})
-  price = price_box.text.strip()
+  # price_box = soup.find('div', attrs={'class': 'price'})
+  # price = price_box.text.strip()
 
   #save data in tuple
-  data.append((name, price))
+  # data.append((name, price))
+  data.append((soup))
 
   import csv
   from datetime import datetime
@@ -32,8 +33,9 @@ for pg in quote_page:
   #open a csv file with append, so old data with not be erased
   with open('index.csv', 'a') as csv_file:
     writer = csv.writer(csv_file)
-    for name, price in data:
-      writer.writerow([name, price, datetime.now()])
+    # for name, price in data:
+    #   writer.writerow([name, price, datetime.now()])
+    writer.writerow([data])
 
 
 
